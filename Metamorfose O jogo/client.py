@@ -1,6 +1,5 @@
 import socket
 import Variaveis as v
-from time import sleep
 
 
 def client_thread():
@@ -9,14 +8,23 @@ def client_thread():
     port = 5505
     conexao.connect((host, port))
     print('conected')
-
+    msg = ''
     while True:
-        msg = conexao.recv(1024)
+        rec = conexao.recv(1024)
         if v.tela_d:
             msg = 'd'
             conexao.send(msg.encode('utf-8'))
-            print(msg)
-        if msg == b'a':
+        elif v.tela_e:
+            msg = 'e'
+            conexao.send(msg.encode('utf-8'))
+        elif v.tela_f:
+            msg = 'f'
+            conexao.send(msg.encode('utf-8'))
+        if rec == b'a':
             v.tela_a = True
-        sleep(0.5)
+        elif rec == b'b':
+            v.tela_b = True
+        elif rec == b'c':
+            v.tela_c = True
+        conexao.send(msg.encode('utf-8'))
 

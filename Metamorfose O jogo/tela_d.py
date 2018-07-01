@@ -19,6 +19,7 @@ def tela_d():
     porta_aberta = pygame.transform.scale(v.gcenario.porta_aberta, (180, 350))
     base = pygame.__rect_constructor(-10, 738, 1376, 30)
 
+    rectporta = porta.get_rect(topleft=(760, 350))
     rectgrade = grade.get_rect(topleft=(180, 0))
     rectAlavanca = alavanca_on.get_rect(topleft=(50, 115))
     rectcamal = pygame.__rect_constructor(420, 560, 2, 400)
@@ -32,6 +33,7 @@ def tela_d():
     rectchave = chave.get_rect(topleft=(1250, 650))
     rectGregor = v.gplayer.GregorEntrando[0].get_rect(topleft=(v.xGregor, v.yGregor))
 
+    collideporta = rectporta.colliderect(rectGregor)
     collideprateleirat = rectprateleirat.colliderect(rectGregor)
     collideprateleirab = rectprateleirab.colliderect(rectGregor)
     collidekey = rectchave.colliderect(rectGregor)
@@ -73,7 +75,6 @@ def tela_d():
 
     if not v.alavanca_off:
         v.tela.blit(alavanca_on, (50, 115))
-        v.tela.blit(porta, (830, 350))
 
     if collidealavanca:
         if v.alavanca:
@@ -85,4 +86,11 @@ def tela_d():
 
     if v.tela_d:
         v.tela.blit(porta_aberta, (830, 350))
+        if collideporta and v.tela_a:
+            v.gregor_tela = 1
+            v.alavanca_off = False
+            v.tela_a = False
+            v.maca = 0
 
+    if not v.tela_d:
+        v.tela.blit(porta, (830, 350))

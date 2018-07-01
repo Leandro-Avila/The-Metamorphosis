@@ -33,7 +33,9 @@ def tela_e():
     rectGuarda_roupat = pygame.__rect_constructor(930, 220, 220, 2)
     rectchave = chave.get_rect(topleft=(50, 150))
     rectGregor = v.gplayer.GregorEntrando[0].get_rect(topleft=(v.xGregor, v.yGregor))
+    rectporta = porta.get_rect(topleft=(700, 350))
 
+    collideporta = rectporta.colliderect(rectGregor)
     collideprateleirat = rectprateleirat.colliderect(rectGregor)
     collideprateleirab = rectprateleirab.colliderect(rectGregor)
     collidekey = rectchave.colliderect(rectGregor)
@@ -82,12 +84,23 @@ def tela_e():
 
     if not v.alavanca_off:
         v.tela.blit(alavanca_on, (1200, 600))
-        v.tela.blit(porta, (700, 350))
 
     if collidealavanca:
         if v.alavanca:
             v.alavanca_off = True
+            v.tela_b = True
 
     if v.alavanca_off:
         v.tela.blit(alavanca_off, (1162, 642))
+
+    if v.tela_e:
         v.tela.blit(porta_aberta, (700, 350))
+        if collideporta and v.tela_b:
+            v.gregor_tela = 2
+            v.alavanca_off = False
+            v.tela_b = False
+            v.xGregor = 50
+            v.yGregor = 650
+
+    if not v.tela_e:
+        v.tela.blit(porta, (700, 350))

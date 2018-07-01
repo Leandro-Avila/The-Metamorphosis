@@ -1,4 +1,4 @@
-import pygame, Annie, LanguageSelectionMenu, _thread, os
+import pygame, Annie, LanguageSelectionMenu, _thread, os, server, client
 import Variaveis as v
 import fase as f
 from pygame.locals import *
@@ -9,7 +9,7 @@ menu = LanguageSelectionMenu.main()
 
 
 if menu == 1:
-    #_thread.start_new_thread(client.client_thread, ())
+    _thread.start_new_thread(client.client_thread, ())
     while v.rodando:
         v.yAnnie = v.yAnnie + v.gravidade
         v.xAnnie += v.velX
@@ -39,7 +39,6 @@ if menu == 1:
                     v.esquerda = True
                 elif v.dPulo:
                     v.direita = True
-                v.gravidade = 37
                 v.ePulo = False
                 v.dPulo = False
                 v.bPulo = False
@@ -76,7 +75,7 @@ if menu == 1:
         v.clock.tick(v.FPS)
         f.faseAnnie()
 if menu == 2:
-    #_thread.start_new_thread(server.server, ('127.0.0.1', 5505))
+    _thread.start_new_thread(server.server, ())
     while v.rodando:
         v.xGregor += v.gvelX
         v.yGregor += v.gvelY
@@ -88,14 +87,14 @@ if menu == 2:
                     v.rodando = False
                 elif evento.key == K_x:
                     v.alavanca = True
-                elif evento.key == K_LEFT and v.xGregor > 0:
+                elif evento.key == K_LEFT:
                     if not (v.cima or v.baixo):
                         v.gesquerda = True
                         v.gdireita = False
                         v.cima = False
                         v.baixo = False
                     v.gvelX -= 5
-                elif evento.key == K_RIGHT and v.xGregor < 1336:
+                elif evento.key == K_RIGHT:
                     if not (v.cima or v.baixo):
                         v.gdireita = True
                         v.gesquerda = False

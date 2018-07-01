@@ -2,11 +2,9 @@ import zlib
 
 
 def compress(file):
+    in_file = open (file + '.jpg', "rb")
+    compressed = zlib.compress(in_file.read())
 
-    with open(file + '.jpg', "rb") as in_file:
-        compressed = zlib.compress(in_file.read())
+    out_file = open (file + '.txt', "wb")
+    out_file.write(compressed)
 
-    with open(file + '.txt', "wb") as out_file:
-        out_file.write(compressed)
-
-compress('imagens/sala')

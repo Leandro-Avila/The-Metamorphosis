@@ -2,9 +2,8 @@ import zlib
 
 
 def decompress(file):
+    out_file = open (file + '.txt', "rb")
+    decompressed = zlib.decompress(out_file.read())
 
-    with open(file + '.txt', "rb") as out_file:
-        decompressed = zlib.decompress(out_file.read())
-
-    with open(file + '.jpg', "wb") as dec_file:
-        dec_file.write(decompressed)
+    dec_file = open (file + '.jpg', "wb")
+    dec_file.write(decompressed)

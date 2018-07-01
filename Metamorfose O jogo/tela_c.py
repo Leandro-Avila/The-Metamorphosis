@@ -24,21 +24,25 @@ def tela_c():
     rectprateleira_a = pygame.__rect_constructor(0, 170, 240, 30)
     rectprateleira_b = pygame.__rect_constructor(1110, 170, 240, 30)
     rectpiano = pygame.__rect_constructor(900, 560, 500, 30)
-    pygame.draw.rect(v.tela,(255,0,0,), rectprateleira, 2)
     rectAnnie = pygame.__rect_constructor(v.xAnnie, v.yAnnie + 146, 114, 70)
-    pygame.draw.rect(v.tela, (255,0,0), rectAnnie, 2)
-    pygame.draw.rect(v.tela, (255,0,0), rectAlavanca, 2)
-    pygame.draw.rect(v.tela, (255, 0, 0), rectprateleira, 2)
-    pygame.draw.rect(v.tela, (255, 0, 0), rectprateleira_a, 2)
-    pygame.draw.rect(v.tela, (255, 0, 0), rectprateleira_b, 2)
-    pygame.draw.rect(v.tela, (255, 0, 0), rectpiano, 2)
+    rectmaca = maca.get_rect(topleft=(v.maca, 250))
+    rectmaca_a = maca.get_rect(topleft=(v.maca_a, 250))
+    rectgrade = grade.get_rect(topleft=(180, -10))
+    rectgrade_a = grade.get_rect(topleft=(1086, -10))
+    rectkey = chave.get_rect(topleft=(560, 260))
+    rectkey_a = chave.get_rect(topleft=(1175, 140))
 
-
+    collidegrade = rectgrade.colliderect(rectAnnie)
+    collidegrade_a = rectgrade_a.colliderect(rectAnnie)
+    collidekey = rectkey.colliderect(rectAnnie)
+    collidekey_a = rectkey_a.colliderect(rectAnnie)
     collideprateleira = rectprateleira.colliderect(rectAnnie)
     collideprateleira_a = rectprateleira_a.colliderect(rectAnnie)
     collideprateleira_b = rectprateleira_b.colliderect(rectAnnie)
     collidealavanca = rectAlavanca.colliderect(rectAnnie)
     basecollide = base.colliderect(rectAnnie)
+    collidemaca = rectmaca.colliderect(rectAnnie)
+    collidemaca_a = rectmaca_a.colliderect(rectAnnie)
     collidepiano = rectpiano.colliderect(rectAnnie)
 
     v.tela.blit(prateleira, (350, 300))
@@ -51,39 +55,69 @@ def tela_c():
     v.tela.blit(maca, (v.maca, 250))
     v.tela.blit(maca, (v.maca_a, 250))
     v.tela.blit(piano, (900, 400))
-    v.tela.blit(grade, (180, -10))
-    v.tela.blit(grade, (1086, -10))
-    v.tela.blit(chave, (560, 260))
-    v.tela.blit(chave, (1175, 140))
+
+    if collidekey:
+        v.key = True
+    elif not v.key:
+        v.tela.blit(grade, (1086, -10))
+        v.tela.blit(chave, (560, 260))
+    elif v.key:
+        collidegrade_a = False
+
+    if collidegrade_a:
+        v.xAnnie -= 10
+
+    if collidekey_a:
+        v.key_a = True
+    elif not v.key_a:
+        v.tela.blit(grade, (180, -10))
+        v.tela.blit(chave, (1175, 140))
+    elif v.key_a:
+        collidegrade = False
+
+    if collidegrade:
+        v.xAnnie += 10
 
     if v.maca == 0:
-        v.macaVel += 30
+        v.macaVel += 15
     if v.maca == 630:
-        v.macaVel -= 30
+        v.macaVel -= 15
     v.maca = v.maca + v.macaVel
 
     if v.maca_a == 660:
-        v.macaVel_a += 30
+        v.macaVel_a += 15
     if v.maca_a == 1290:
-        v.macaVel_a -= 30
+        v.macaVel_a -= 15
     v.maca_a = v.maca_a + v.macaVel_a
 
     if basecollide or collideprateleira or collideprateleira_a or collideprateleira_b or collidepiano:
         v.gravidade = 0
         if v.bPulo:
             v.gravidade = -37
-        elif not (basecollide or collideprateleira or collideprateleira_a or collideprateleira_b or collidepiano):
-            if not v.bPulo:
-                v.gravidade = 37
+    elif not (basecollide or collideprateleira or collideprateleira_a or collideprateleira_b or collidepiano) and not v.bPulo:
+            v.gravidade = 37
+
+    if collidemaca or collidemaca_a:
+        v.xAnnie = v.largura / 2
+        v.yAnnie = 580
             
     if not v.alavanca_off:
         v.tela.blit(alavanca_on, (80, 100))
-        v.tela.blit(porta, (30, 350))
 
     if collidealavanca:
         if v.alavanca:
             v.alavanca_off = True
+            v.tela_f = True
+
+    if v.tela_b:
+        v.tela.blit(porta_aberta, (30, 350))
+        if collideporta and v.tela_f:
+            v.annie_tela = 3
+            v.alavanca_off = False
+            v.tela_f = False
+
+    if not v.tela_c:
+        v.tela.blit(porta, (30, 350))
 
     if v.alavanca_off:
         v.tela.blit(alavanca_off, (42, 142))
-        v.tela.blit(porta_aberta, (30, 350))

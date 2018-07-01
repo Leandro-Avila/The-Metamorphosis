@@ -22,11 +22,16 @@ def tela_b():
     rectprateleira_a = pygame.__rect_constructor(70, 170, 240, 30)
     rectprateleira_b = pygame.__rect_constructor(1110, 510, 240, 30)
     rectAnnie = pygame.__rect_constructor(v.xAnnie, v.yAnnie + 146, 114, 70)
+    rectporta = porta.get_rect(topleft=(30, 350))
+    rectmaca = maca.get_rect(topleft=(v.maca, 250))
+    pygame.draw.rect(v.tela, (255,0,0), rectmaca, 2)
 
+    collideporta = rectporta.colliderect(rectAnnie)
     collideprateleira = rectprateleira.colliderect(rectAnnie)
     collideprateleira_a = rectprateleira_a.colliderect(rectAnnie)
     collideprateleira_b = rectprateleira_b.colliderect(rectAnnie)
     collidealavanca = rectAlavanca.colliderect(rectAnnie)
+    collidemaca = rectmaca.colliderect(rectAnnie)
     basecollide = base.colliderect(rectAnnie)
 
     v.tela.blit(prateleira, (450, 300))
@@ -52,14 +57,27 @@ def tela_b():
     elif not (basecollide or collideprateleira or collideprateleira_a or collideprateleira_b) and not v.bPulo:
         v.gravidade = 37
 
+    if collidemaca:
+        v.xAnnie = v.largura / 2
+        v.yAnnie = 580
+
     if not v.alavanca_off:
         v.tela.blit(alavanca_on, (120, 100))
-        v.tela.blit(porta, (30, 350))
 
     if collidealavanca:
         if v.alavanca:
             v.alavanca_off = True
+            v.tela_e = True
+
+    if v.tela_b:
+        v.tela.blit(porta_aberta, (30, 350))
+        if collideporta and v.tela_e:
+            v.annie_tela = 2
+            v.alavanca_off = False
+            v.tela_e = False
+
+    if not v.tela_b:
+        v.tela.blit(porta, (30, 350))
 
     if v.alavanca_off:
         v.tela.blit(alavanca_off, (82, 142))
-        v.tela.blit(porta_aberta, (30, 350))

@@ -68,12 +68,21 @@ def tela_f():
 
     if not v.alavanca_off:
         v.tela.blit(alavanca_on, (1200, 600))
-        v.tela.blit(porta, (900, 350))
 
     if collidealavanca:
         if v.alavanca:
             v.alavanca_off = True
+            v.tela_c = True
 
     if v.alavanca_off:
         v.tela.blit(alavanca_off, (1162, 642))
+
+    if v.tela_e:
         v.tela.blit(porta_aberta, (900, 350))
+        if collideporta and v.tela_c:
+            v.gregor_tela = 2
+            v.alavanca_off = False
+            v.tela_c = False
+
+    if not v.tela_e:
+        v.tela.blit(porta, (900, 350))

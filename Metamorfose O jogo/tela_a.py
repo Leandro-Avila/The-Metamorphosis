@@ -21,7 +21,9 @@ def tela_a():
     rectprateleira = pygame.__rect_constructor(570, 340, 200, 30)
     rectGuarda_roupa = pygame.__rect_constructor(50, 260, 275, 30)
     rectAnnie = pygame.__rect_constructor(v.xAnnie, v.yAnnie + 156, 120, 55)
+    rectporta = porta.get_rect(topleft=(760, 350))
 
+    collideporta = rectporta.colliderect(rectAnnie)
     collideGuarda_roupa = rectGuarda_roupa.colliderect(rectAnnie)
     collideprateleira = rectprateleira.colliderect(rectAnnie)
     collidecama = rectcama.colliderect(rectAnnie)
@@ -32,11 +34,11 @@ def tela_a():
     v.tela.blit(cama, (950, 450))
     v.tela.blit(luminaria_a, (200, 300))
     v.tela.blit(luminaria_a, (1000, 300))
-    pygame.draw.rect(v.tela, (255, 0, 0), rectAlavanca, 2)
-    pygame.draw.rect(v.tela, (255, 0, 0), rectcama, 2)
-    pygame.draw.rect(v.tela, (255, 0, 0), rectprateleira, 2)
-    pygame.draw.rect(v.tela, (255, 0, 0), rectGuarda_roupa, 2)
-    pygame.draw.rect(v.tela, (255, 0, 0), rectAnnie, 2)
+    #pygame.draw.rect(v.tela, (255, 0, 0), rectAlavanca, 2)
+    #pygame.draw.rect(v.tela, (255, 0, 0), rectcama, 2)
+    #pygame.draw.rect(v.tela, (255, 0, 0), rectprateleira, 2)
+    #pygame.draw.rect(v.tela, (255, 0, 0), rectGuarda_roupa, 2)
+    #pygame.draw.rect(v.tela, (255, 0, 0), rectAnnie, 2)
 
     if basecollide or collidecama or collideprateleira or collideGuarda_roupa:
         v.gravidade = 0
@@ -47,7 +49,6 @@ def tela_a():
 
     if not v.alavanca_off:
         v.tela.blit(alavanca_on, (120, 150))
-        v.tela.blit(porta, (760, 350))
 
     if collidealavanca:
         if v.alavanca:
@@ -59,5 +60,11 @@ def tela_a():
 
     if v.tela_a:
         v.tela.blit(porta_aberta, (760, 350))
+        if collideporta and v.tela_d:
+            v.annie_tela = 1
+            v.alavanca_off = False
+            v.tela_d = False
+    if not v.tela_a:
+        v.tela.blit(porta, (760, 350))
 
     v.tela.blit(guarda_roupa, (50, 210))
