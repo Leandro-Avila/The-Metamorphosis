@@ -40,10 +40,10 @@ def main(language):
                     play = True
                 if play:
                     screen.blit(v.background.Sala, (0, 0))
-                    v.tela.blit(v.player.Annie, (350, 200))
-                    v.tela.blit(v.gplayer.Gregor, (750, 190))
-                    rect_annie = v.player.Annie.get_rect(topleft=(350, 200))
-                    rect_gregor = v.gplayer.Gregor.get_rect(topleft=(750, 190))
+                    v.tela.blit(v.player.Annie, (250, 200))
+                    v.tela.blit(v.gplayer.Gregor, (850, 190))
+                    rect_annie = v.player.Annie.get_rect(topleft=(250, 200))
+                    rect_gregor = v.gplayer.Gregor.get_rect(topleft=(850, 190))
                     if rect_annie.collidepoint(pos) and pg.mouse.get_pressed()[0]:
                         personagem = 1
                     elif rect_gregor.collidepoint(pos) and pg.mouse.get_pressed()[0]:
@@ -54,7 +54,7 @@ def main(language):
                     os.remove('imagens/quarto.jpg')
                     pg.quit()
         pg.display.update()
-    screen.blit(pag_um, (0, 0))
+    '''screen.blit(pag_um, (0, 0))
     pg.display.update()
     sleep(2.5)
     screen.blit(pag_dois, (0, 0))
@@ -65,6 +65,6 @@ def main(language):
     sleep(2.5)
     screen.blit(pag_quatro, (0, 0))
     pg.display.update()
-    sleep(2.5)
+    sleep(2.5)'''
     return personagem
 

@@ -4,11 +4,11 @@ import Variaveis as v
 
 def server():
     host = '127.0.0.1'
-    port = 5505
+    port = 5500
     conexao = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     conexao.bind((host, port))
     conexao.listen(1)
-    msg = ''
+    msg = ' '
     print('aguardando conexão!')
     c, cliente = conexao.accept()
     print('conectado')
@@ -30,5 +30,6 @@ def server():
             v.tela_e = True
         elif rec == b'f':
             v.tela_f = True
+        print(msg)
 
 

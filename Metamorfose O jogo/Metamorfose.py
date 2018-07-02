@@ -88,17 +88,27 @@ if menu == 2:
                 elif evento.key == K_x:
                     v.alavanca = True
                 elif evento.key == K_LEFT:
-                    if not (v.cima or v.baixo):
-                        v.gesquerda = True
+                    if v.yGregor == 518:
                         v.gdireita = False
+                        v.gesquerda = True
                         v.cima = False
+                        v.baixo = False
+                    else:
+                        v.gdireita = False
+                        v.gesquerda = False
+                        v.cima = True
                         v.baixo = False
                     v.gvelX -= 5
                 elif evento.key == K_RIGHT:
-                    if not (v.cima or v.baixo):
+                    if v.yGregor == 518:
                         v.gdireita = True
                         v.gesquerda = False
                         v.cima = False
+                        v.baixo = False
+                    else:
+                        v.gdireita = False
+                        v.gesquerda = False
+                        v.cima = True
                         v.baixo = False
                     v.gvelX += 5
                 elif evento.key == K_UP:
@@ -115,27 +125,17 @@ if menu == 2:
                     v.gvelY += 5
             if evento.type == KEYUP:
                 if evento.key == K_LEFT:
-                    v.gdireita = False
                     v.gesquerda = False
                     v.cima = False
-                    v.baixo = False
                     v.gvelX = 0
                 elif evento.key == K_RIGHT:
                     v.gdireita = False
-                    v.gesquerda = False
                     v.cima = False
-                    v.baixo = False
                     v.gvelX = 0
                 elif evento.key == K_UP:
-                    v.gdireita = False
-                    v.gesquerda = False
                     v.cima = False
-                    v.baixo = False
                     v.gvelY = 0
                 elif evento.key == K_DOWN:
-                    v.gdireita = False
-                    v.gesquerda = False
-                    v.cima = False
                     v.baixo = False
                     v.gvelY = 0
                 elif evento.key == K_x:

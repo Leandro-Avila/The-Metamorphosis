@@ -23,12 +23,11 @@ def tela_f():
     rectcamat = pygame.__rect_constructor(180, 550, 360, 2)
     rectGuarda_roupal = pygame.__rect_constructor(550, 230, 2, 500)
     rectGuarda_roupar = pygame.__rect_constructor(820, 230, 2, 500)
-    pygame.draw.rect(v.tela,(255,0,0), rectGuarda_roupar, 2)
-    pygame.draw.rect(v.tela,(255,0,0), rectGuarda_roupal, 2)
     rectGuarda_roupat = pygame.__rect_constructor(570, 220, 220, 2)
-    pygame.draw.rect(v.tela,(255,0,0), rectGuarda_roupat, 2)
     rectGregor = v.gplayer.GregorEntrando[0].get_rect(topleft=(v.xGregor, v.yGregor))
+    rectporta = porta.get_rect(topleft=(900, 350))
 
+    collideporta = rectporta.colliderect(rectGregor)
     collidecamal = rectcamal.colliderect(rectGregor)
     collidecamar = rectcamar.colliderect(rectGregor)
     collidecamat = rectcamat.colliderect(rectGregor)
@@ -77,12 +76,12 @@ def tela_f():
     if v.alavanca_off:
         v.tela.blit(alavanca_off, (1162, 642))
 
-    if v.tela_e:
+    if v.tela_f:
         v.tela.blit(porta_aberta, (900, 350))
         if collideporta and v.tela_c:
-            v.gregor_tela = 2
+            v.gregor_tela = 3
             v.alavanca_off = False
             v.tela_c = False
 
-    if not v.tela_e:
+    if not v.tela_f:
         v.tela.blit(porta, (900, 350))

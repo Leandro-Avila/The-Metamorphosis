@@ -5,10 +5,10 @@ import Variaveis as v
 def client_thread():
     conexao = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     host = '127.0.0.1'
-    port = 5505
+    port = 5500
     conexao.connect((host, port))
     print('conected')
-    msg = ''
+    msg = ' '
     while True:
         rec = conexao.recv(1024)
         if v.tela_d:
@@ -26,5 +26,6 @@ def client_thread():
             v.tela_b = True
         elif rec == b'c':
             v.tela_c = True
+        print(msg)
         conexao.send(msg.encode('utf-8'))
 

@@ -19,12 +19,11 @@ def tela_b():
 
     rectAlavanca = alavanca_on.get_rect(topleft=(120, 150))
     rectprateleira = pygame.__rect_constructor(460, 310, 470, 30)
-    rectprateleira_a = pygame.__rect_constructor(70, 170, 240, 30)
+    rectprateleira_a = pygame.__rect_constructor(70, 185, 240, 30)
     rectprateleira_b = pygame.__rect_constructor(1110, 510, 240, 30)
-    rectAnnie = pygame.__rect_constructor(v.xAnnie, v.yAnnie + 146, 114, 70)
+    rectAnnie = pygame.__rect_constructor(v.xAnnie + 10, v.yAnnie + 146, 84, 70)
     rectporta = porta.get_rect(topleft=(30, 350))
     rectmaca = maca.get_rect(topleft=(v.maca, 250))
-    pygame.draw.rect(v.tela, (255,0,0), rectmaca, 2)
 
     collideporta = rectporta.colliderect(rectAnnie)
     collideprateleira = rectprateleira.colliderect(rectAnnie)
@@ -73,6 +72,7 @@ def tela_b():
         v.tela.blit(porta_aberta, (30, 350))
         if collideporta and v.tela_e:
             v.annie_tela = 2
+            v.maca = 0
             v.alavanca_off = False
             v.tela_e = False
 

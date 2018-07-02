@@ -3,6 +3,7 @@ import Menu, os
 import decompress as d
 import Variaveis as v
 from pygame.locals import *
+from time import sleep
 
 
 def main():
@@ -10,7 +11,19 @@ def main():
     pg.mixer.music.play(0)
     screen = v.tela
     d.decompress('imagens/menu')
+    logo = pg.transform.scale(pg.image.load('imagens/logo.png'), (v.largura, v.altura))
+    cps = pg.transform.scale(pg.image.load('imagens/cps.png'), (v.largura, v.altura))
+    kafka = pg.transform.scale(pg.image.load('imagens/kafka.png'), (v.largura, v.altura))
     background = pg.transform.scale(pg.image.load('imagens/menu.jpg'), (v.largura, v.altura))
+    screen.blit(cps, (0, 0))
+    pg.display.update()
+    sleep(2)
+    screen.blit(kafka, (0, 0))
+    pg.display.update()
+    sleep(2)
+    screen.blit(logo, (0, 0))
+    pg.display.update()
+    sleep(2)
     screen.blit(background, (0, 0))
     myfont = pg.font.SysFont("monospace", 15)
     label = myfont.render("Select the language / Selecione o idioma", 1, (255, 255, 0))

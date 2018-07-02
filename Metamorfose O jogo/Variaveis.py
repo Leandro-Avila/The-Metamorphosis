@@ -11,7 +11,7 @@ background = Annie.Bg()
 gplayer = Gregor.Gregor()
 gcenario = Gregor.Cenario()
 gbackground = Gregor.Bg()
-tela = pygame.display.set_mode((largura, altura))
+tela = pygame.display.set_mode((largura, altura), pygame.FULLSCREEN)
 pygame.display.set_caption("Metamorfose - O jogo")
 gravidade = 37
 xAnnie = largura/2
@@ -55,6 +55,6 @@ spritemov = 0
 spriteg = 0
 newx = 134
 newy = 236
-annie_tela = 0
+annie_tela = 2
 gregor_tela = 0
 clock = pygame.time.Clock()

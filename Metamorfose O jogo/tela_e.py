@@ -99,6 +99,7 @@ def tela_e():
             v.gregor_tela = 2
             v.alavanca_off = False
             v.tela_b = False
+            v.maca = 0
             v.xGregor = 50
             v.yGregor = 650
 
