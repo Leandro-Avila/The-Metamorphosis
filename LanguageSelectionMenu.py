@@ -1,5 +1,5 @@
 import pygame as pg
-import Menu, os
+import Menu
 import decompress as d
 import Variaveis as v
 from pygame.locals import *

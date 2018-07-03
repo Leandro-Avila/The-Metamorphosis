@@ -1,7 +1,6 @@
 import pygame as pg
 import Variaveis as v
 from pygame.locals import *
-import os
 from time import sleep
 
 
