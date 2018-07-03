@@ -2,7 +2,7 @@ import pygame
 import Annie
 import Gregor
 
-FPS = 30
+FPS = 60
 largura = 1366
 altura = 768
 player = Annie.Annie()

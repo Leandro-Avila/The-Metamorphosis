@@ -3,7 +3,7 @@ import Variaveis as v
 
 
 def server():
-    host = '127.0.0.1'
+    host = '192.168.15.5'
     port = 5500
     conexao = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     conexao.bind((host, port))

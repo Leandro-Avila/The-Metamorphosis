@@ -61,7 +61,7 @@ def tela_d():
     elif v.key:
         collidegrade = False
 
-    if basecollide or collidecamat or collideGuarda_roupat:
+    if basecollide or collidecamat or collideGuarda_roupat or collideprateleirat:
         v.yGregor -= 5
 
     if collidecamal or collideGuarda_roupal:
@@ -70,8 +70,8 @@ def tela_d():
     if collidecamar or collideGuarda_roupar or collidegrade:
         v.xGregor += 5
 
-    #if collideprateleirab:
-    #    v.yGregor += 5
+    if collideprateleirab:
+        v.yGregor += 5
 
     if not v.alavanca_off:
         v.tela.blit(alavanca_on, (50, 115))
@@ -87,6 +87,7 @@ def tela_d():
     if v.tela_d:
         v.tela.blit(porta_aberta, (830, 350))
         if collideporta and v.tela_a:
+            v.key = False
             v.gregor_tela = 1
             v.alavanca_off = False
             v.tela_a = False

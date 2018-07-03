@@ -24,7 +24,11 @@ def tela_b():
     rectAnnie = pygame.__rect_constructor(v.xAnnie + 10, v.yAnnie + 146, 84, 70)
     rectporta = porta.get_rect(topleft=(30, 350))
     rectmaca = maca.get_rect(topleft=(v.maca, 250))
+    rectleft = pygame.__rect_constructor(-10, -10, 10, 800)
+    rectright = pygame.__rect_constructor(1366, -10, 10, 800)
 
+    collideleft = rectleft.colliderect(rectAnnie)
+    collideright = rectright.colliderect(rectAnnie)
     collideporta = rectporta.colliderect(rectAnnie)
     collideprateleira = rectprateleira.colliderect(rectAnnie)
     collideprateleira_a = rectprateleira_a.colliderect(rectAnnie)
@@ -48,6 +52,11 @@ def tela_b():
     if v.maca == 1320:
         v.macaVel -= 40
     v.maca = v.maca + v.macaVel
+
+    if collideleft:
+        v.xAnnie += 10
+    if collideright:
+        v.xAnnie -= 10
 
     if basecollide or collideprateleira or collideprateleira_a or collideprateleira_b:
         v.gravidade = 0

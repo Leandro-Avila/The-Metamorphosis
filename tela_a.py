@@ -22,7 +22,11 @@ def tela_a():
     rectGuarda_roupa = pygame.__rect_constructor(50, 260, 275, 30)
     rectAnnie = pygame.__rect_constructor(v.xAnnie, v.yAnnie + 186, 110, 35)
     rectporta = porta.get_rect(topleft=(760, 350))
+    rectleft = pygame.__rect_constructor(-10, -10, 10, 800)
+    rectright = pygame.__rect_constructor(1366, -10, 10, 800)
 
+    collideleft = rectleft.colliderect(rectAnnie)
+    collideright = rectright.colliderect(rectAnnie)
     collideporta = rectporta.colliderect(rectAnnie)
     collideGuarda_roupa = rectGuarda_roupa.colliderect(rectAnnie)
     collideprateleira = rectprateleira.colliderect(rectAnnie)
@@ -32,8 +36,13 @@ def tela_a():
 
     v.tela.blit(prateleira, (550, 330))
     v.tela.blit(cama, (950, 450))
-    v.tela.blit(luminaria_a, (200, 300))
+    v.tela.blit(luminaria_a, (300, 300))
     v.tela.blit(luminaria_a, (1000, 300))
+
+    if collideleft:
+        v.xAnnie += 10
+    if collideright:
+        v.xAnnie -= 10
 
     if basecollide or collidecama or collideprateleira or collideGuarda_roupa:
         v.gravidade = 0

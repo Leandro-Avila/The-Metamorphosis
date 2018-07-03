@@ -32,7 +32,11 @@ def tela_c():
     rectkey = chave.get_rect(topleft=(560, 260))
     rectkey_a = chave.get_rect(topleft=(1175, 140))
     rectporta = porta.get_rect(topleft=(30, 350))
+    rectleft = pygame.__rect_constructor(-10, -10, 10, 800)
+    rectright = pygame.__rect_constructor(1366, -10, 10, 800)
 
+    collideleft = rectleft.colliderect(rectAnnie)
+    collideright = rectright.colliderect(rectAnnie)
     collideporta = rectporta.colliderect(rectAnnie)
     collidegrade = rectgrade.colliderect(rectAnnie)
     collidegrade_a = rectgrade_a.colliderect(rectAnnie)
@@ -57,6 +61,11 @@ def tela_c():
     v.tela.blit(maca, (v.maca, 250))
     v.tela.blit(maca, (v.maca_a, 250))
     v.tela.blit(piano, (900, 400))
+
+    if collideleft:
+        v.xAnnie += 10
+    if collideright:
+        v.xAnnie -= 10
 
     if v.maca == 0:
         v.macaVel += 15
